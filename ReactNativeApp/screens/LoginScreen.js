@@ -25,7 +25,7 @@ export default function LoginScreen(props) {
 
   sendCred = (props) => {
     console.log(email, password)
-    fetch('https://77db903c94ac.ngrok.io/signin', {
+    fetch('https://virdismart.herokuapp.com//signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -57,13 +57,14 @@ export default function LoginScreen(props) {
 
   return (
     <View style={{ marginTop: 40 }}>
-      <KeyboardAvoidingView behavior='position'>
+      <KeyboardAvoidingView behavior='padding'>
         <Text
           style={{
             fontSize: 35,
             marginLeft: 18,
             marginTop: 35,
             color: '#3b3b3b',
+            textAlign: 'center',
           }}
         >
           Welcome to

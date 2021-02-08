@@ -9,14 +9,20 @@ import {
   Paragraph,
   Avatar,
 } from 'react-native-paper'
+import { QRCode } from 'react-native-custom-qr-codes-expo'
 
 export default function HomeScreen(props) {
   const [email, setEmail] = useState()
+  const [points, setPoints] = useState()
+  const [fname, setFname] = useState()
+  const [lname, setLname] = useState()
+  const [qrId, setQrId] = useState()
+  const [CardId, setCardId] = useState()
 
   fetchUser = async () => {
     const token = await AsyncStorage.getItem('token')
 
-    fetch('https://77db903c94ac.ngrok.io:5000/me', {
+    fetch('https://virdismart.herokuapp.com//profile', {
       headers: {
         Accept: 'application/json',
         Authorization: `Bearer ${token}`,
@@ -25,6 +31,11 @@ export default function HomeScreen(props) {
       .then((res) => res.json())
       .then((data) => {
         setEmail(data.email)
+        setPoints(data.points)
+        setFname(data.fname)
+        setLname(data.lname)
+        setQrId(data.qrId)
+        setCardId(data.CardId)
       })
       .catch((error) => {
         console.error(error)
@@ -43,7 +54,9 @@ export default function HomeScreen(props) {
 
   return (
     <View>
-      <Text style={{ fontSize: 18 }}>{email}</Text>
+      <Text style={{ fontSize: 18 }}>
+        Welcome {fname} {lname}
+      </Text>
       <Button
         mode='contained'
         style={{ marginLeft: 18, marginRight: 18, marginTop: 18 }}
@@ -56,13 +69,16 @@ export default function HomeScreen(props) {
         <Card.Content>
           <Title>Your QR Code</Title>
           <Paragraph>Scan with our Bin to earn points</Paragraph>
+          <QRCode content='https://reactnative.com' />
         </Card.Content>
-        <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
-
-        <Card.Actions>
-          <Button>Cancel</Button>
-          <Button>Ok</Button>
-        </Card.Actions>
+      </Card>
+      <Card style={styles.card}>
+        <Card.Content>
+          <Title>User Info</Title>
+          <Paragraph>Email : {email}</Paragraph>
+          <Paragraph>Points : {points} </Paragraph>
+          <Paragraph>Card ID : {CardId}</Paragraph>
+        </Card.Content>
       </Card>
     </View>
   )

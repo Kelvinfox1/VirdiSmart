@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   ToastAndroid,
+  ScrollView,
 } from 'react-native'
 import { Button, TextInput } from 'react-native-paper'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -15,6 +16,9 @@ export default function SignupScreen(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [cpass, setcPass] = useState()
+  const [fname, setFname] = useState('')
+  const [lname, setLname] = useState('')
+  const [phone, setPhone] = useState('')
   const [err, setError] = useState('')
 
   // const showToast = (msg) => {
@@ -30,7 +34,7 @@ export default function SignupScreen(props) {
     var isValid = validatePassword()
     if (isValid) {
       console.log(email, password)
-      fetch('https://77db903c94ac.ngrok.io/signup', {
+      fetch('https://virdismart.herokuapp.com/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,6 +42,9 @@ export default function SignupScreen(props) {
         body: JSON.stringify({
           email: email,
           password: password,
+          fname: fname,
+          lname: lname,
+          phone: phone,
         }),
       })
         .then((res) => res.json())
@@ -60,79 +67,113 @@ export default function SignupScreen(props) {
   }
 
   return (
-    <View style={{ marginTop: 40 }}>
-      <KeyboardAvoidingView behavior='position'>
-        <StatusBar backgroundColor='blue' />
-        <Text
-          style={{
-            fontSize: 35,
-            marginLeft: 18,
-            marginTop: 35,
-            color: '#3b3b3b',
-          }}
-        >
-          Welcome to
-        </Text>
-        <Text style={{ fontSize: 30, marginLeft: 18, color: 'blue' }}>
-          VirdiSmart
-        </Text>
-        <Text
-          style={{
-            fontSize: 20,
-            marginLeft: 18,
-          }}
-        >
-          Create new Account
-        </Text>
-
-        <Text>{err}</Text>
-
-        <TextInput
-          label='Email'
-          mode='outlined'
-          theme={{ colors: { primary: 'blue' } }}
-          style={{ marginLeft: 18, marginRight: 18, marginTop: 18 }}
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-        />
-
-        <TextInput
-          label='Password'
-          mode='outlined'
-          secureTextEntry={true}
-          theme={{ colors: { primary: 'blue' } }}
-          style={{ marginLeft: 18, marginRight: 18, marginTop: 18 }}
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-        />
-
-        <TextInput
-          label='confirm password'
-          mode='outlined'
-          secureTextEntry={true}
-          theme={{ colors: { primary: 'blue' } }}
-          style={{ marginLeft: 18, marginRight: 18, marginTop: 18 }}
-          value={cpass}
-          onChangeText={(text) => setcPass(text)}
-        />
-
-        <Button
-          mode='contained'
-          style={{ marginLeft: 18, marginRight: 18, marginTop: 18 }}
-          onPress={() => sendCred(props)}
-        >
-          Signup
-        </Button>
-
-        <TouchableOpacity>
+    <View
+      style={{
+        flex: 1,
+      }}
+    >
+      <ScrollView>
+        <KeyboardAvoidingView behavior='padding'>
+          <StatusBar backgroundColor='green' />
           <Text
-            style={{ fontSize: 18, marginLeft: 18, marginTop: 20 }}
-            onPress={() => props.navigation.navigate('login')}
+            style={{
+              fontSize: 35,
+              marginLeft: 18,
+              marginTop: 35,
+              color: '#3b3b3b',
+            }}
           >
-            Already have an account ?
+            Welcome to
           </Text>
-        </TouchableOpacity>
-      </KeyboardAvoidingView>
+          <Text style={{ fontSize: 30, marginLeft: 18, color: 'blue' }}>
+            VirdiSmart
+          </Text>
+          <Text
+            style={{
+              fontSize: 20,
+              marginLeft: 18,
+            }}
+          >
+            Create new Account
+          </Text>
+
+          <Text>{err}</Text>
+
+          <TextInput
+            label='Email'
+            mode='outlined'
+            theme={{ colors: { primary: 'blue' } }}
+            style={{ marginLeft: 18, marginRight: 18, marginTop: 18 }}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+          />
+
+          <TextInput
+            label='First Name'
+            mode='outlined'
+            theme={{ colors: { primary: 'blue' } }}
+            style={{ marginLeft: 18, marginRight: 18, marginTop: 18 }}
+            value={fname}
+            onChangeText={(text) => setFname(text)}
+          />
+
+          <TextInput
+            label='Second Name'
+            mode='outlined'
+            theme={{ colors: { primary: 'blue' } }}
+            style={{ marginLeft: 18, marginRight: 18, marginTop: 18 }}
+            value={lname}
+            onChangeText={(text) => setLname(text)}
+          />
+
+          <TextInput
+            label='Phone Number'
+            keyboardType='numeric'
+            mode='outlined'
+            theme={{ colors: { primary: 'blue' } }}
+            style={{ marginLeft: 18, marginRight: 18, marginTop: 18 }}
+            value={phone}
+            onChangeText={(text) => setPhone(text)}
+          />
+
+          <TextInput
+            label='Password'
+            mode='outlined'
+            secureTextEntry={true}
+            theme={{ colors: { primary: 'blue' } }}
+            style={{ marginLeft: 18, marginRight: 18, marginTop: 18 }}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
+
+          <TextInput
+            label='confirm password'
+            mode='outlined'
+            secureTextEntry={true}
+            theme={{ colors: { primary: 'blue' } }}
+            style={{ marginLeft: 18, marginRight: 18, marginTop: 18 }}
+            value={cpass}
+            onChangeText={(text) => setcPass(text)}
+          />
+
+          <Button
+            mode='contained'
+            style={{ marginLeft: 18, marginRight: 18, marginTop: 18 }}
+            onPress={() => sendCred(props)}
+          >
+            Signup
+          </Button>
+
+          <TouchableOpacity>
+            <Text
+              style={{ fontSize: 18, marginLeft: 18, marginTop: 20 }}
+              onPress={() => props.navigation.navigate('login')}
+            >
+              Already have an account ?
+            </Text>
+          </TouchableOpacity>
+        </KeyboardAvoidingView>
+      </ScrollView>
     </View>
   )
 }

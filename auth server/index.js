@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
 const app = express()
-const PORT = 5000
+const PORT = process.env.PORT || 5000
 const { mogoUrl } = require('./keys')
 
 require('./models/User')
