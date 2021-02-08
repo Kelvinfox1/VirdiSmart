@@ -9,7 +9,6 @@ import {
   Paragraph,
   Avatar,
 } from 'react-native-paper'
-import QRCode from 'qrcode.react'
 
 export default function HomeScreen(props) {
   const [email, setEmail] = useState()

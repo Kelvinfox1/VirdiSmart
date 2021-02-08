@@ -1,10 +1,11 @@
 {
-  "name": "auth-server",
+  "name": "virdismart",
   "version": "1.0.0",
-  "description": "",
+  "description": "  Going green is a project that encourages recycling of PTE through awarding redemable points",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
   },
   "author": "Kelvin Ngure",
   "license": "MIT",
@@ -15,5 +16,9 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.11"
+  },
+  "engines": {
+    "node": "14.15.1"
   }
 }
+ 
