@@ -9,7 +9,7 @@ import {
   ToastAndroid,
   ScrollView,
 } from 'react-native'
-import { Button, TextInput } from 'react-native-paper'
+import { Button, TextInput, Avatar } from 'react-native-paper'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function SignupScreen(props) {
@@ -33,7 +33,7 @@ export default function SignupScreen(props) {
   sendCred = (props) => {
     var isValid = validatePassword()
     if (isValid) {
-      console.log(email, password)
+      console.log(email, password, fname, lname, phone)
       fetch('https://virdismart.herokuapp.com/signup', {
         method: 'POST',
         headers: {
@@ -75,19 +75,11 @@ export default function SignupScreen(props) {
       <ScrollView>
         <KeyboardAvoidingView behavior='padding'>
           <StatusBar backgroundColor='green' />
-          <Text
-            style={{
-              fontSize: 35,
-              marginLeft: 18,
-              marginTop: 35,
-              color: '#3b3b3b',
-            }}
-          >
-            Welcome to
-          </Text>
-          <Text style={{ fontSize: 30, marginLeft: 18, color: 'blue' }}>
-            VirdiSmart
-          </Text>
+          <Avatar.Image
+            size={94}
+            style={{ marginLeft: 150, backgroundColor: ' transparent ' }}
+            source={require('../images/virdis.png')}
+          />
           <Text
             style={{
               fontSize: 20,
@@ -169,7 +161,7 @@ export default function SignupScreen(props) {
               style={{ fontSize: 18, marginLeft: 18, marginTop: 20 }}
               onPress={() => props.navigation.navigate('login')}
             >
-              Already have an account ?
+              Already have an account ? Click to login
             </Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>

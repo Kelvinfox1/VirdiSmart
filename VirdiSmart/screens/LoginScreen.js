@@ -11,6 +11,7 @@ import {
 import {
   Button,
   TextInput,
+  Avatar,
   Dialog,
   Portal,
   Paragraph,
@@ -25,7 +26,7 @@ export default function LoginScreen(props) {
 
   sendCred = (props) => {
     console.log(email, password)
-    fetch('https://virdismart.herokuapp.com//signin', {
+    fetch('https://virdismart.herokuapp.com/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -58,20 +59,11 @@ export default function LoginScreen(props) {
   return (
     <View style={{ marginTop: 40 }}>
       <KeyboardAvoidingView behavior='padding'>
-        <Text
-          style={{
-            fontSize: 35,
-            marginLeft: 18,
-            marginTop: 35,
-            color: '#3b3b3b',
-            textAlign: 'center',
-          }}
-        >
-          Welcome to
-        </Text>
-        <Text style={{ fontSize: 30, marginLeft: 18, color: 'blue' }}>
-          VirdiSmart
-        </Text>
+        <Avatar.Image
+          size={94}
+          style={{ marginLeft: 150, backgroundColor: ' transparent ' }}
+          source={require('../images/virdis.png')}
+        />
         <Text
           style={{
             fontSize: 20,
@@ -126,7 +118,7 @@ export default function LoginScreen(props) {
             style={{ fontSize: 18, marginLeft: 18, marginTop: 20 }}
             onPress={() => props.navigation.navigate('signup')}
           >
-            Don't have an account ?
+            Don't have an account ? Click to sign-up
           </Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>

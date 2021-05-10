@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ReactNativeApp",
-    "slug": "ReactNativeApp",
+    "name": "VirdiSmart",
+    "slug": "VirdiSmart",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,10 +24,11 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF",
-        "package": "com.virdismart.virdismart",
+        "backgroundColor": "#FFFFFF"
+        
+      },
+      "package": "com.virdismart.virdismart",
         "versionCode": 1
-      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

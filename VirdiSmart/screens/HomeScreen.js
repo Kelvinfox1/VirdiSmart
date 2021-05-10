@@ -19,10 +19,13 @@ export default function HomeScreen(props) {
   const [qrId, setQrId] = useState()
   const [CardId, setCardId] = useState()
 
+  const userQrcode = { qrId }
+  const qrcode = JSON.stringify(userQrcode)
+
   fetchUser = async () => {
     const token = await AsyncStorage.getItem('token')
 
-    fetch('https://virdismart.herokuapp.com//profile', {
+    fetch('https://virdismart.herokuapp.com/profile', {
       headers: {
         Accept: 'application/json',
         Authorization: `Bearer ${token}`,
@@ -69,7 +72,7 @@ export default function HomeScreen(props) {
         <Card.Content>
           <Title>Your QR Code</Title>
           <Paragraph>Scan with our Bin to earn points</Paragraph>
-          <QRCode content='https://reactnative.com' />
+          <QRCode content={qrcode} />
         </Card.Content>
       </Card>
       <Card style={styles.card}>
